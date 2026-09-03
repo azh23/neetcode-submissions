@@ -1,0 +1,18 @@
+class Solution:
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        perms = []
+
+        def recurse(perm, pick):
+            if len(perm) == len(nums):
+                perms.append(perm[:])
+                return
+            for i in range(len(nums)):
+                if not pick[i]:
+                    perm.append(nums[i])
+                    pick[i] = True
+                    recurse(perm, pick)
+                    perm.pop()
+                    pick[i] = False
+        recurse([], [False] * len(nums))
+        return perms
+
