@@ -1,0 +1,25 @@
+class Solution:
+    def rotate(self, matrix: List[List[int]]) -> None:
+        # [1, 4, 7]
+        # [2, 5, 8]
+        # [3, 6, 9]
+        n = len(matrix)
+        for r in range(n):
+            for c in range(r + 1, n):
+                matrix[r][c], matrix[c][r] = matrix[c][r], matrix[r][c]
+
+        for r in range(n):
+            for c in range(n // 2):
+                matrix[r][c], matrix[r][n - c - 1] = matrix[r][n - c - 1], matrix[r][c]
+
+"""
+class Solution:
+    def rotate(self, matrix: List[List[int]]) -> None:
+        # Reverse the matrix vertically
+        matrix.reverse()
+
+        # Transpose the matrix
+        for i in range(len(matrix)):
+            for j in range(i + 1, len(matrix)):
+                matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
+"""
